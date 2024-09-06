@@ -1,0 +1,38 @@
+{
+  "name": "codeaura-ide",
+  "version": "1.0.0",
+  "description": "CodeAura IDE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/101rror/IDE.git"
+  },
+  "author": "101rror",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/101rror/IDE/issues"
+  },
+  "homepage": "https://github.com/101rror/IDE#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "compilex": "^0.7.4",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "IDE",
+    "CodeAura",
+    "Coding",
+    "Coding IDE",
+    "Python IDE",
+    "C++ IDE",
+    "Java IDE",
+    "Online-Compiler",
+    "Compiler",
+    "Online IDE"
+    ]
+}

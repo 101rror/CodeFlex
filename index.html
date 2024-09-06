@@ -11,6 +11,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="codemirror-5.65.17/lib/codemirror.css">
+  <script src="codemirror-5.65.17/mode/python/python.js"></script>
   <script src="codemirror-5.65.17/lib/codemirror.js"></script>
   <script src="codemirror-5.65.17/mode/clike/clike.js"></script>
   <link rel="stylesheet" href="codemirror-5.65.17/theme/dracula.css">
@@ -22,18 +23,18 @@
 <body>
   <div class="row m-3">
     <div class="col">
-      <div class="d-flex justify-content-between mb-2">
+      <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
         <div class="col-2">
           <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
           <select class="form-select" id="inlineFormSelectPref">
             <option selected>Choose...</option>
-            <option value="C++">C++</option>
+            <option value="Cpp">C++</option>
             <option value="Java">Java</option>
             <option value="Python">Python</option>
           </select>
         </div>
         <div>
-          <button type="button" class="btn btn-success">Codekoro</button>
+          <button type="button" class="btn btn-success">CodeAura</button>
           <button type="button" class="btn btn-success" title="Format"><i class="fas fa-align-left"></i></button>
           <button type="button" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
         </div>
@@ -62,6 +63,19 @@
 
   var width = window.innerWidth
   editor.setSize(0.7 * width, "500")
+
+  var option = document.getElementById("inlineFormSelectPref")
+  option.addEventListener("change", function(){
+    if(option.value=== "Java"){
+      editor.setOption("mode", "text/x-java")
+    }
+    else if(option.value=== "Python"){
+      editor.setOption("mode", "text/x-python")
+    }
+    else{
+      editor.setOption("mode", "text/x-c++src")
+    }
+  })
 </script>
 
 </html>
