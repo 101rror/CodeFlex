@@ -53,6 +53,8 @@
     </div>
   </div>
 </body>
+
+
 <script>
   var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
     mode: "text/x-c++src",
@@ -72,7 +74,7 @@
     else if (option.value === "Python") {
       editor.setOption("mode", "text/x-python");
     }
-    else if(option.value === "Cpp") {
+    else if (option.value === "Cpp") {
       editor.setOption("mode", "text/x-c++src");
     }
   });
