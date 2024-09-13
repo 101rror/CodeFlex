@@ -35,8 +35,9 @@
         </div>
         <div>
           <button type="button" class="btn btn-success">CodeAura</button>
-          <button type="button" class="btn btn-success" title="Format"><i class="fas fa-align-left"></i></button>
-          <button type="button" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
+          <button type="button" class="btn btn-success" title="Format"><i
+              class="fas fa-align-left"></i></button>
+          <button type="button" id="run" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
         </div>
       </div>
       <textarea type="text" id="editor" class="form-control" aria-label="First name"></textarea>
@@ -44,11 +45,11 @@
     <div class="col d-flex flex-column rounded bg-dark px-4">
       <div class="h-50">
         <label for="Input" class="text-light mt-4 mb-2">Input</label>
-        <textarea type="text" class="form-control h-75" aria-label="Last name"></textarea>
+        <textarea type="text" id="input" class="form-control h-75" aria-label="Last name"></textarea>
       </div>
       <div class="h-50">
         <label for="Output" class="text-light mb-2">Output</label>
-        <textarea type="text" class="form-control h-75" aria-label="Last name"></textarea>
+        <textarea type="text" id="output" class="form-control h-75" aria-label="Last name"></textarea>
       </div>
     </div>
   </div>
@@ -64,6 +65,9 @@
   });
 
   var width = window.innerWidth;
+  var input = document.getElementById("input");
+  var output = document.getElementById("output");
+  var run = document.getElementById("run");
   editor.setSize(0.7 * width, "500");
 
   var option = document.getElementById("inlineFormSelectPref");
@@ -77,6 +81,24 @@
     else if (option.value === "Cpp") {
       editor.setOption("mode", "text/x-c++src");
     }
+  });
+  var code;
+
+  run.addEventListener("click", async function () {
+    code = {
+      code: editor.getValue(),
+      input: input.value,
+      lang: option.value
+    }
+    var oData = await fetch("http://localhost:8000/compile", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(code)
+    });
+    var d = await oData.json();
+    output.value = d.output
   });
 </script>
 

@@ -20,7 +20,7 @@ app.post("/compile", function (req, res) {
     try {
         if (lang === "Cpp") {
             if (!input) {
-                var envData = { OS: "windows", cmd: "g++" };
+                var envData = { OS: "windows", cmd: "g++", options: { timeout: 10000 } };
                 compiler.compileCPP(envData, code, function (data) {
                     if (data.output) {
                         res.send(data);
@@ -31,7 +31,7 @@ app.post("/compile", function (req, res) {
                 });
             }
             else {
-                var envData = { OS: "windows", cmd: "g++" };
+                var envData = { OS: "windows", cmd: "g++", options:{timeout:10000} };
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
                     if (data.output) {
                         res.send(data);
