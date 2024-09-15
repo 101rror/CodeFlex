@@ -3,13 +3,14 @@ const app = express();
 const bodyP = require("body-parser");
 const compiler = require("compilex");
 const options = { stats: true };
+const fs = require("fs");
 compiler.init(options);
 
 app.use(bodyP.json());
 app.use("/codemirror-5.65.17", express.static("G:/IDE/codemirror-5.65.17"));
 
 app.get("/", function (req, res) {
-    compiler.flush(function(){
+    compiler.flush(function () {
         console.log("deleted");
     })
     res.sendFile("G:/IDE/index.html");
@@ -34,7 +35,7 @@ app.post("/compile", function (req, res) {
                 });
             }
             else {
-                var envData = { OS: "windows", cmd: "g++", options:{timeout:10000} };
+                var envData = { OS: "windows", cmd: "g++", options: { timeout: 10000 } };
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
                     if (data.output) {
                         res.send(data);
@@ -97,6 +98,42 @@ app.post("/compile", function (req, res) {
     catch (e) {
         console.log("Error" + e.message);
     }
+});
+
+// For Cpp
+app.get("/template/cpp", function (req, res) {
+    fs.readFile("G:/IDE/templates/cpp_template.txt", "utf8", function (err, data) {
+        if (err) {
+            res.status(500).send("Template not found");
+        }
+        else {
+            res.send({ template: data });
+        }
+    });
+});
+
+//For Java
+app.get("/template/java", function (req, res) {
+    fs.readFile("G:/IDE/templates/java_template.txt", "utf8", function (err, data) {
+        if (err) {
+            res.status(500).send("Template not found");
+        }
+        else {
+            res.send({ template: data });
+        }
+    });
+});
+
+//For Python
+app.get("/template/python", function (req, res) {
+    fs.readFile("G:/IDE/templates/python_template.txt", "utf8", function (err, data) {
+        if (err) {
+            res.status(500).send("Template not found");
+        }
+        else {
+            res.send({ template: data });
+        }
+    });
 });
 
 app.listen(8000);

@@ -20,11 +20,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
+
+
+
 <body>
   <div class="row m-3">
     <div class="col">
       <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
-        <div class="col-2">
+        <div class="col-2 d-flex justify-content-between align-items-center">
           <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
           <select class="form-select" id="inlineFormSelectPref">
             <option selected>Choose...</option>
@@ -32,10 +35,13 @@
             <option value="Java">Java</option>
             <option value="Python">Python</option>
           </select>
+          <button type="button" id="save" class="btn btn-success ms-2" title="Save"><i class="bi bi-save"></i></button>
         </div>
         <div>
           <button type="button" class="btn btn-success">CodeAura</button>
-          <button type="button" id="format" class="btn btn-success" title="Format"><i class="fas fa-align-left"></i></button>
+          <button type="button" id="format" class="btn btn-success" title="Format"><i
+              class="fas fa-align-left"></i></button>
+          <button type="button" id="reset" class="btn btn-success" title="Reset"><i class="bi bi-braces"></i></button>
           <button type="button" id="run" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
         </div>
       </div>
@@ -55,6 +61,8 @@
 </body>
 
 
+
+
 <script>
   var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
     mode: "text/x-c++src",
@@ -66,23 +74,56 @@
   var width = window.innerWidth;
   var input = document.getElementById("input");
   var output = document.getElementById("output");
-  var run = document.getElementById("run");
   editor.setSize(0.7 * width, "500");
 
   var option = document.getElementById("inlineFormSelectPref");
   option.addEventListener("change", function () {
     if (option.value === "Java") {
       editor.setOption("mode", "text/x-java");
+
+      // Fetch the Java template from the server
+      fetch("/template/java")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          editor.error("Error fetching Java template:", error)
+        });
     }
     else if (option.value === "Python") {
       editor.setOption("mode", "text/x-python");
+
+      // Fetch the Python template from the server
+      fetch("/template/python")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          editor.error("Error fetching Python template:", error)
+        });
     }
     else if (option.value === "Cpp") {
       editor.setOption("mode", "text/x-c++src");
+
+      // Fetch the C++ template from the server
+      fetch("/template/cpp")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          console.error("Error fetching C++ template:", error);
+        });
     }
   });
-  var code;
 
+
+
+
+  var code;
+  var run = document.getElementById("run");
   run.addEventListener("click", async function () {
     code = {
       code: editor.getValue(),
@@ -98,6 +139,67 @@
     });
     var d = await oData.json();
     output.value = d.output
+  });
+
+
+
+
+  var reset = document.getElementById("reset");
+  reset.addEventListener("click", function () {
+    var lang = option.value;
+
+    if (lang === "Java") {
+      // Fetch the Java template and reset the editor
+      fetch("/template/java")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          console.error("Error resetting Java template:", error);
+        });
+    }
+    else if (lang === "Python") {
+      // Fetch the Python template and reset the editor
+      fetch("/template/python")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          console.error("Error resetting Python template:", error);
+        });
+    }
+    else if (lang === "Cpp") {
+      // Fetch the C++ template and reset the editor
+      fetch("/template/cpp")
+        .then(response => response.json())
+        .then(data => {
+          editor.setValue(data.template);
+        })
+        .catch(error => {
+          console.error("Error resetting C++ template:", error);
+        });
+    }
+  });
+
+
+
+  var save = document.getElementById("save");
+
+  save.addEventListener("click", function () {
+    var code = editor.getValue();
+    var bolb = new Blob([code], { type: "text/plain" });
+    var link = document.createElement("a");
+
+    link.href = window.URL.createObjectURL(bolb);
+    link.download = "code.txt";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
   });
 </script>
 
