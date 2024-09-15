@@ -10,7 +10,7 @@ app.use("/codemirror-5.65.17", express.static("G:/IDE/codemirror-5.65.17"));
 
 app.get("/", function (req, res) {
     compiler.flush(function(){
-        console.log("deleted")
+        console.log("deleted");
     })
     res.sendFile("G:/IDE/index.html");
 });
@@ -95,7 +95,7 @@ app.post("/compile", function (req, res) {
         }
     }
     catch (e) {
-        console.log("Error");
+        console.log("Error" + e.message);
     }
 });
 

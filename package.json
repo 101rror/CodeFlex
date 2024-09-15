@@ -17,12 +17,13 @@
   },
   "homepage": "https://github.com/101rror/IDE#readme",
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
+    "child_process": "^1.0.2",
     "compilex": "^0.7.4",
-    "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4",
+    "shell-escape": "^0.2.0"
   },
-  "devDependencies": {},
   "keywords": [
     "IDE",
     "CodeAura",
@@ -34,5 +35,5 @@
     "Online-Compiler",
     "Compiler",
     "Online IDE"
-    ]
+  ]
 }
