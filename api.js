@@ -9,6 +9,9 @@ app.use(bodyP.json());
 app.use("/codemirror-5.65.17", express.static("G:/IDE/codemirror-5.65.17"));
 
 app.get("/", function (req, res) {
+    compiler.flush(function(){
+        console.log("deleted")
+    })
     res.sendFile("G:/IDE/index.html");
 });
 
