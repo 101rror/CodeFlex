@@ -49,6 +49,7 @@
               data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear-wide"></i></button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+              <li><a class="dropdown-item" id="codeShare" href="#"><i class="fas fa-share-alt"></i> Code Share</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-display"></i> Mode</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-palette"></i> Theme</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-question-circle"></i> Help</a></li>
@@ -137,6 +138,7 @@
 
   var codeaura = document.getElementById("codeaura");
   codeaura.addEventListener("click", function () {
+    window.open("https://github.com/101rror/CodeAura", "_blank");
   });
 
 
@@ -223,6 +225,11 @@
   });
 
 
+
+
+  var codeshare = document.getElementById("codeShare")
+  document.getElementById("codeShare").addEventListener("click", function () {
+  });
 
 
 

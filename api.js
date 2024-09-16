@@ -9,6 +9,9 @@ compiler.init(options);
 app.use(bodyP.json());
 app.use("/codemirror-5.65.17", express.static("G:/CodeAura/codemirror-5.65.17"));
 
+
+
+
 app.get("/", function (req, res) {
     compiler.flush(function () {
         console.log("deleted");
