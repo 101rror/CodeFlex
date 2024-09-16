@@ -41,8 +41,19 @@
           <button type="button" id="codeaura" class="btn btn-success">CodeAura</button>
           <button type="button" id="format" class="btn btn-success" title="Format"><i
               class="fas fa-align-left"></i></button>
-          <button type="button" id="reset" class="btn btn-success" title="Reset"><i class="bi bi-braces"></i></button>
+          <button type="button" id="reset" class="btn btn-success" title="Reset"><i
+              class="bi bi-arrow-clockwise"></i></button>
           <button type="button" id="run" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
+          <div class="btn-group">
+            <button type="button" id="setting" class="btn btn-success dropdown-toggle" title="Setting"
+              data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear-wide"></i></button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-display"></i> Mode</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-palette"></i> Theme</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-question-circle"></i> Help</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <textarea type="text" id="editor" class="form-control" aria-label="First name"></textarea>
@@ -71,10 +82,12 @@
     autoCloseBrackets: true,
   });
 
+
   var width = window.innerWidth;
   var input = document.getElementById("input");
   var output = document.getElementById("output");
   editor.setSize(0.7 * width, "500");
+
 
   var option = document.getElementById("inlineFormSelectPref");
   option.addEventListener("change", function () {
@@ -120,10 +133,14 @@
   });
 
 
-  var codeaura = document.getElementById("codeaura");
-  codeaura.addEventListener("click", function(){
 
+
+  var codeaura = document.getElementById("codeaura");
+  codeaura.addEventListener("click", function () {
   });
+
+
+
 
   var code;
   var run = document.getElementById("run");
@@ -188,8 +205,8 @@
 
 
 
-  var save = document.getElementById("save");
 
+  var save = document.getElementById("save");
   save.addEventListener("click", function () {
     var code = editor.getValue();
     var bolb = new Blob([code], { type: "text/plain" });
@@ -204,6 +221,11 @@
 
     document.body.removeChild(link);
   });
+
+
+
+
+
 </script>
 
 </html>

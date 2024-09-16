@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/101rror/IDE.git"
+    "url": "git+https://github.com/101rror/CodeAura.git"
   },
   "author": "101rror",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/101rror/IDE/issues"
+    "url": "https://github.com/101rror/CodeAura/issues"
   },
-  "homepage": "https://github.com/101rror/IDE#readme",
+  "homepage": "https://github.com/101rror/CodeAura#readme",
   "dependencies": {
     "body-parser": "^1.20.3",
     "child_process": "^1.0.2",
