@@ -19,6 +19,9 @@ app.get("/", function (req, res) {
     res.sendFile("G:/CodeAura/index.html");
 });
 
+
+
+
 app.post("/compile", function (req, res) {
     var code = req.body.code;
     var input = req.body.input;
@@ -103,6 +106,8 @@ app.post("/compile", function (req, res) {
     }
 });
 
+
+
 // For Cpp
 app.get("/template/cpp", function (req, res) {
     fs.readFile("G:/CodeAura/templates/cpp_template.txt", "utf8", function (err, data) {
@@ -115,6 +120,8 @@ app.get("/template/cpp", function (req, res) {
     });
 });
 
+
+
 //For Java
 app.get("/template/java", function (req, res) {
     fs.readFile("G:/CodeAura/templates/java_template.txt", "utf8", function (err, data) {
@@ -126,6 +133,8 @@ app.get("/template/java", function (req, res) {
         }
     });
 });
+
+
 
 //For Python
 app.get("/template/python", function (req, res) {
