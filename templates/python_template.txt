@@ -1,1 +1,4 @@
-print("Code with CodeAura")
+def hello():
+	print('Code with CodeAura.')
+    
+hello()
