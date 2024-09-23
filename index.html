@@ -6,32 +6,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+
   <!-- CodeMirror Core -->
   <link rel="stylesheet" href="codemirror-5.65.17/lib/codemirror.css">
   <script src="codemirror-5.65.17/lib/codemirror.js"></script>
-  
+
   <!-- Load modes after CodeMirror Core -->
-  <script src="codemirror-5.65.17/mode/clike/clike.js"></script> <!-- C++ and Java mode -->
-  <script src="codemirror-5.65.17/mode/python/python.js"></script> <!-- Python mode -->
-  
+  <script src="codemirror-5.65.17/mode/clike/clike.js"></script>
+  <script src="codemirror-5.65.17/mode/python/python.js"></script>
+
   <!-- CodeMirror Theme -->
   <link rel="stylesheet" href="codemirror-5.65.17/theme/3024-night.css">
-  
+
   <!-- CodeMirror Addons -->
   <script src="codemirror-5.65.17/addon/edit/closebrackets.js"></script>
-  
+
   <!-- Bootstrap Icons and FontAwesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </head>
 
 
@@ -54,8 +55,8 @@
         </div>
         <div>
           <button type="button" id="codeaura" class="btn btn-success">CodeAura</button>
-          <button type="button" id="format" class="btn btn-success" title="Format"><i
-              class="fas fa-align-left"></i></button>
+          <!-- <button type="button" id="format" class="btn btn-success" title="Format"><i
+              class="fas fa-align-left"></i></button> -->
           <button type="button" id="reset" class="btn btn-success" title="Reset"><i
               class="bi bi-arrow-clockwise"></i></button>
           <button type="button" id="run" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
@@ -64,10 +65,8 @@
               data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear-wide"></i></button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
-              <li><a class="dropdown-item" id="codeShare" href="#"><i class="bi bi-share"></i> Code Share</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-display"></i> Mode</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-palette"></i> Theme</a></li>
-              <li><a class="dropdown-item" href="#"><i class="bi bi-question-circle"></i> Help</a></li>
+              <li><a class="dropdown-item" href="#" id="share-button"><i class="bi bi-share"></i> Share</a></li>
             </ul>
           </div>
         </div>
@@ -85,6 +84,31 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Share Model -->
+
+  <div id="shareModal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Share Your Code</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="shareLink"></p>
+          <button id="copyLink" class="btn btn-primary">Copy Link</button>
+          <p>or share using:</p>
+          <div class="d-flex">
+            <a href="#" class="btn btn-outline-primary me-2" id="facebookShare"><i class="bi bi-facebook"></i>
+              Facebook</a>
+            <a href="#" class="btn btn-outline-info" id="whatsappShare"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 
@@ -269,17 +293,42 @@
 
 
 
-  var codeshare = document.getElementById("codeShare");
-  document.getElementById("codeShare").addEventListener("click", function () {
+  var shareButton = document.getElementById("share-button");
+  var shareModal = new bootstrap.Modal(document.getElementById("shareModal"));
+  var shareLinkElement = document.getElementById("shareLink");
+  var copyLinkButton = document.getElementById("copyLink");
+  var facebookShare = document.getElementById("facebookShare");
+  var whatsappShare = document.getElementById("whatsappShare");
+
+  shareButton.addEventListener("click", function () {
+    var uniqueId = Date.now();
+    var uniqueLink = `https://codeaura.com/share/${uniqueId}`;
+
+    shareLinkElement.textContent = uniqueLink;
+
+    shareModal.show();
   });
 
-
-
-
-  var setting = document.getElementById("setting");
-  setting.addEventListener('click', function () {
-    alert('This feature will be available in the future.');
+  copyLinkButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(shareLinkElement.textContent).then(function () {
+      alert("Link copied to clipboard!");
+    }, function (err) {
+      console.error("Could not copy text: ", err);
+    });
   });
+
+  facebookShare.addEventListener("click", function (e) {
+    e.preventDefault();
+    var url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareLinkElement.textContent)}`;
+    window.open(url, "_blank");
+  });
+
+  whatsappShare.addEventListener("click", function (e) {
+    e.preventDefault();
+    var url = `https://wa.me/?text=${encodeURIComponent(shareLinkElement.textContent)}`;
+    window.open(url, "_blank");
+  });
+
 
 
 
