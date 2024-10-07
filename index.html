@@ -314,7 +314,7 @@
   var whatsappShare = document.getElementById("whatsappShare");
 
   function generateUniqueId(length) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$&abcdefghijklmnopqrstuvwxyz';
     let result = '';
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
