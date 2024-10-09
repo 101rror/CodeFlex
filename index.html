@@ -97,9 +97,16 @@
         <textarea type="text" id="expected" class="form-control h-75" aria-label="Last name"></textarea>
       </div>
       <div id="accept" class="text-light mt-1 d-flex justify-content-end">
-        <!-- Checkmark will be displayed here -->
-        <span id="checkmark" style="display: none; color: rgb(11, 243, 26);">Matched<i class="fas fa-check"></i></span>
-    </div> 
+        <!-- Checkmark for Matched -->
+        <span id="checkmark" style="display: none; color: rgb(11, 243, 26);">
+          Matched <i class="fas fa-check"></i>
+        </span>
+
+        <!-- Crossmark for Not Matched -->
+        <span id="crossmark" style="display: none; color: rgb(243, 26, 26);">
+          Not Matched <i class="fas fa-times"></i>
+        </span>
+      </div>
     </div>
   </div>
 
@@ -229,10 +236,14 @@
 
 
     if (output.value.trim() === expected.value.trim()) {
-      checkmark.style.display = "inline";
+      // Show checkmark (Matched)
+      document.getElementById("checkmark").style.display = "inline";
+      document.getElementById("crossmark").style.display = "none";  // Hide Not Matched icon
     }
     else {
-      checkmark.style.display = "none";
+      // Show crossmark (Not Matched)
+      document.getElementById("checkmark").style.display = "none";  // Hide Matched icon
+      document.getElementById("crossmark").style.display = "inline";
     }
   });
 
