@@ -2,15 +2,13 @@
 #codeaura {
     position: relative;
     z-index: 0;
-  }
-  
-  #codeaura::before {
+}
+
+#codeaura::before {
     content: "";
-    background: linear-gradient(
-      45deg,
-      #FF0000, #6661f7, #FFFB00, #48FF00,
-      #00FFD5, #000dff, #c8ff00, #9500ff
-    );
+    background: linear-gradient(45deg,
+            #FF0000, #6661f7, #FFFB00, #48FF00,
+            #00FFD5, #000dff, #c8ff00, #9500ff);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -23,19 +21,26 @@
     transition: opacity .3s ease-in-out;
     border-radius: 10px;
     opacity: 0;
-  }
-  
-  @keyframes glowing {
-    0% {background-position: 0 0;}
-    50% {background-position: 400% 0;}
-    100% {background-position: 0 0;}
-  }
-  
-  #codeaura:hover::before {
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+#codeaura:hover::before {
     opacity: 1;
-  }
-  
-  #codeaura:active:before {
+}
+
+#codeaura:active:before {
     background: transparent;
-  }
-  
+}
