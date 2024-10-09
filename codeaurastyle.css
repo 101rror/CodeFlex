@@ -1,0 +1,41 @@
+/* Glow effect specifically for CodeAura */
+#codeaura {
+    position: relative;
+    z-index: 0;
+  }
+  
+  #codeaura::before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #FF0000, #6661f7, #FFFB00, #48FF00,
+      #00FFD5, #000dff, #c8ff00, #9500ff
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;
+  }
+  
+  @keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+  }
+  
+  #codeaura:hover::before {
+    opacity: 1;
+  }
+  
+  #codeaura:active:before {
+    background: transparent;
+  }
+  

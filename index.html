@@ -10,6 +10,8 @@
   <!-- Add the CodeAura icon -->
   <link rel="icon" href="image/laptop.gif" type="image/gif">
 
+  <link rel="stylesheet" href="codeaurastyle.css">
+
   <!-- Include Font Awesome for the checkmark icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -61,17 +63,17 @@
             <option value="Java">Java</option>
             <option value="Python">Python</option>
           </select>
-          <button type="button" id="save" class="btn btn-success ms-2" title="Save"><i class="bi bi-save"></i></button>
+          <button type="button" id="save" class="btn btn-primary ms-2" title="Save"><i class="bi bi-save"></i></button>
         </div>
         <div>
-          <button type="button" id="codeaura" class="btn btn-success">CodeAura</button>
-          <!-- <button type="button" id="format" class="btn btn-success" title="Format"><i
+          <button type="button" id="codeaura" class="btn btn-info">CodeAura</button>
+          <!-- <button type="button" id="format" class="btn btn-primary" title="Format"><i
               class="fas fa-align-left"></i></button> -->
-          <button type="button" id="reset" class="btn btn-success" title="Reset"><i
+          <button type="button" id="reset" class="btn btn-danger" title="Reset"><i
               class="bi bi-arrow-clockwise"></i></button>
-          <button type="button" id="run" class="btn btn-success" title="Run"><i class="bi bi-play-fill"></i></button>
+          <button type="button" id="run" class="btn btn-primary" title="Run"><i class="bi bi-play-fill"></i></button>
           <div class="btn-group">
-            <button type="button" id="setting" class="btn btn-success dropdown-toggle" title="Setting"
+            <button type="button" id="setting" class="btn btn-primary dropdown-toggle" title="Setting"
               data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear-wide"></i></button>
             <ul class="dropdown-menu">
               <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li> -->
@@ -235,9 +237,16 @@
     output.value = d.output;
 
 
-    if (output.value.trim() === expected.value.trim()) {
+    const expectedValue = expected.value.trim();
+
+    if (output.value.trim() === expectedValue) {
       // Show checkmark (Matched)
       document.getElementById("checkmark").style.display = "inline";
+      document.getElementById("crossmark").style.display = "none";  // Hide Not Matched icon
+    }
+    else if (expectedValue === "") {
+      // Optionally handle the case where expected value is empty
+      document.getElementById("checkmark").style.display = "none";  // Hide Matched icon
       document.getElementById("crossmark").style.display = "none";  // Hide Not Matched icon
     }
     else {
