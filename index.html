@@ -5,12 +5,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeAura</title>
+  <title>CodeFlex</title>
 
-  <!-- Add the CodeAura icon -->
+  <!-- Add the CodeFlex icon -->
   <link rel="icon" href="image/laptop.ico" type="image/x-icon">
 
-  <link rel="stylesheet" href="codeaurastyle.css">
+  <link rel="stylesheet" href="codeflexstyle.css">
 
   <!-- Include Font Awesome for the checkmark icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -66,7 +66,7 @@
           <button type="button" id="save" class="btn btn-primary ms-2" title="Save"><i class="bi bi-save"></i></button>
         </div>
         <div>
-          <button type="button" id="codeaura" class="btn btn-info">CodeAura</button>
+          <button type="button" id="codeflex" class="btn btn-info">CodeFlex</button>
           <!-- <button type="button" id="format" class="btn btn-primary" title="Format"><i
               class="fas fa-align-left"></i></button> -->
           <button type="button" id="reset" class="btn btn-danger" title="Reset"><i
@@ -210,9 +210,9 @@
 
 
 
-  var codeaura = document.getElementById("codeaura");
-  codeaura.addEventListener("click", function () {
-    window.open("https://github.com/101rror/CodeAura", "_blank");
+  var codeflex = document.getElementById("codeflex");
+  codeflex.addEventListener("click", function () {
+    window.open("https://github.com/101rror/CodeFlex", "_blank");
   });
 
 
@@ -321,7 +321,7 @@
       return;
     }
 
-    var fileName = prompt("Enter the file name:", "Codeaura" + extension);
+    var fileName = prompt("Enter the file name:", "codeflex" + extension);
 
     if (!fileName) {
       alert("File name is required.");
@@ -370,7 +370,7 @@
       return;
     }
     var uniqueId = generateUniqueId(16);
-    var uniqueLink = `https://codeaura.com/share/${uniqueId}`;
+    var uniqueLink = `https://codeflex.com/share/${uniqueId}`;
 
     shareLinkElement.textContent = uniqueLink;
 

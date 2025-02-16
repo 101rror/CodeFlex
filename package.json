@@ -1,21 +1,21 @@
 {
-  "name": "codeaura-ide",
+  "name": "codeflex-ide",
   "version": "1.0.0",
-  "description": "CodeAura IDE",
+  "description": "CodeFlex IDE",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/101rror/CodeAura.git"
+    "url": "git+https://github.com/101rror/CodeFlex.git"
   },
   "author": "101rror",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/101rror/CodeAura/issues"
+    "url": "https://github.com/101rror/CodeFlex/issues"
   },
-  "homepage": "https://github.com/101rror/CodeAura#readme",
+  "homepage": "https://github.com/101rror/CodeFlex#readme",
   "dependencies": {
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
@@ -29,7 +29,7 @@
   },
   "keywords": [
     "IDE",
-    "CodeAura",
+    "CodeFlex",
     "Coding",
     "Coding IDE",
     "Python IDE",

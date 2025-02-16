@@ -10,7 +10,7 @@ compiler.init(options);
 
 app.use(bodyP.json());
 app.use(
-    '/codemirror-5.65.17', express.static('G:/CodeAura/codemirror-5.65.17'));
+    '/codemirror-5.65.17', express.static('G:/CodeFlex/codemirror-5.65.17'));
 
 
 
@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
   compiler.flush(function() {
     console.log('deleted');
   })
-  res.sendFile('G:/CodeAura/index.html');
+  res.sendFile('G:/CodeFlex/index.html');
 });
 
 
@@ -100,7 +100,7 @@ app.post('/compile', function(req, res) {
 // For Cpp
 app.get('/template/cpp', function(req, res) {
   fs.readFile(
-      'G:/CodeAura/templates/cpp_template.txt', 'utf8', function(err, data) {
+      'G:/CodeFlex/templates/cpp_template.txt', 'utf8', function(err, data) {
         if (err) {
           res.status(500).send('Template not found');
         } else {
@@ -114,7 +114,7 @@ app.get('/template/cpp', function(req, res) {
 // For Java
 app.get('/template/java', function(req, res) {
   fs.readFile(
-      'G:/CodeAura/templates/java_template.txt', 'utf8', function(err, data) {
+      'G:/CodeFlex/templates/java_template.txt', 'utf8', function(err, data) {
         if (err) {
           res.status(500).send('Template not found');
         } else {
@@ -128,7 +128,7 @@ app.get('/template/java', function(req, res) {
 // For Python
 app.get('/template/python', function(req, res) {
   fs.readFile(
-      'G:/CodeAura/templates/python_template.txt', 'utf8', function(err, data) {
+      'G:/CodeFlex/templates/python_template.txt', 'utf8', function(err, data) {
         if (err) {
           res.status(500).send('Template not found');
         } else {

@@ -1,10 +1,10 @@
-/* Glow effect specifically for CodeAura */
-#codeaura {
+/* Glow effect specifically for codeflex */
+#codeflex {
     position: relative;
     z-index: 0;
 }
 
-#codeaura::before {
+#codeflex::before {
     content: "";
     background: linear-gradient(45deg,
             #FF0000, #6661f7, #FFFB00, #48FF00,
@@ -37,10 +37,10 @@
     }
 }
 
-#codeaura:hover::before {
+#codeflex:hover::before {
     opacity: 1;
 }
 
-#codeaura:active:before {
+#codeflex:active:before {
     background: transparent;
 }
