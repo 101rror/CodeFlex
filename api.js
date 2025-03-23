@@ -12,90 +12,97 @@ app.use(bodyP.json());
 app.use(
     '/codemirror-5.65.17', express.static('G:/CodeFlex/codemirror-5.65.17'));
 
-
-
 app.get('/', function(req, res) {
   compiler.flush(function() {
     console.log('deleted');
-  })
+  });
   res.sendFile('G:/CodeFlex/index.html');
 });
-
-
 
 app.post('/compile', function(req, res) {
   var code = req.body.code;
   var input = req.body.input;
   var lang = req.body.lang;
 
+  let processCompleted = false;  // Flag to ensure only one response is sent
+
   try {
     if (lang === 'Cpp') {
+      var envData = {OS: 'windows', cmd: 'g++', options: {timeout: 10000}};
       if (!input) {
-        var envData = {OS: 'windows', cmd: 'g++', options: {timeout: 10000}};
         compiler.compileCPP(envData, code, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       } else {
-        var envData = {OS: 'windows', cmd: 'g++', options: {timeout: 10000}};
         compiler.compileCPPWithInput(envData, code, input, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       }
     } else if (lang === 'Java') {
+      var envData = {OS: 'windows'};
       if (!input) {
-        var envData = {OS: 'windows'};
         compiler.compileJava(envData, code, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       } else {
-        var envData = {OS: 'windows'};
         compiler.compileJavaWithInput(envData, code, input, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       }
     } else if (lang === 'Python') {
+      var envData = {OS: 'windows'};
       if (!input) {
-        var envData = {OS: 'windows'};
         compiler.compilePython(envData, code, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       } else {
-        var envData = {OS: 'windows'};
         compiler.compilePythonWithInput(envData, code, input, function(data) {
+          if (processCompleted) return;  // Prevent sending response twice
           if (data.output) {
             res.send(data);
           } else {
             res.send({output: 'error'});
           }
+          processCompleted = true;
         });
       }
     }
   } catch (e) {
+    if (processCompleted) return;  // Prevent sending response twice if an error occurs
     console.log('Error' + e.message);
+    res.status(500).send({ error: 'Internal Server Error' });
   }
 });
-
-
 
 // For Cpp
 app.get('/template/cpp', function(req, res) {
@@ -109,8 +116,6 @@ app.get('/template/cpp', function(req, res) {
       });
 });
 
-
-
 // For Java
 app.get('/template/java', function(req, res) {
   fs.readFile(
@@ -122,8 +127,6 @@ app.get('/template/java', function(req, res) {
         }
       });
 });
-
-
 
 // For Python
 app.get('/template/python', function(req, res) {
