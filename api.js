@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyP = require('body-parser');
 const compiler = require('compilex');
@@ -8,6 +9,7 @@ const options = {
 const fs = require('fs');
 compiler.init(options);
 
+app.use(cors());
 app.use(bodyP.json());
 app.use(
     '/codemirror-5.65.17', express.static('G:/CodeFlex/codemirror-5.65.17'));
