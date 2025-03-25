@@ -9,8 +9,8 @@ public class SumFunction {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
         int b = sc.nextInt();
-        System.out.println(add(a, b));
         System.out.println("Code with CodeFlex");
+        System.out.println(add(a, b));
         sc.close();
     }
 }
