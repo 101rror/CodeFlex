@@ -8,7 +8,7 @@ int sum(int a, int b) {
 int main() {
     int a, b;
     cin >> a >> b;
-    cout << "Code with CodeFlex";
-    cout << sum(a, b) << endl;
+    cout << "Code with CodeFlex" << endl;
+    cout << sum(a, b);
     return 0;
 }
