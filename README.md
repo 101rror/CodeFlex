@@ -1,1 +1,1 @@
-*My CodeFlex IDE*
+*CodeFlex IDE*
