@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-*CodeFlex IDE*
-=======
 # CodeFlex
 CodeFlex is a modern browser based coding platform that allows users to write, execute and share code in real time. Developed using HTML, CSS, JavaScript and powered by CodeMirror. It features robust multi language syntax highlighting, dynamic code templates, real time output validation, and an intuitive, responsive user interface. Designed for both learning and collaboration, CodeFlex streamlines the coding experience with built-in tools for code sharing, file downloads and theme customization.
 
@@ -61,13 +58,6 @@ CodeFlex is a modern browser based coding platform that allows users to write, e
     npm run dev
     ```
 
-## Screenshots
-
-
-
 ## Demo Video
 
 Watch the full demo on YouTube: *[CodeFlex Demo Video](https://youtu.be/x-ueWw9Jk7M?si=sdKayGdoUMdIslZA)*
-
----
->>>>>>> cc620b9 (Update README.md file)
